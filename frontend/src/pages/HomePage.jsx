@@ -11,18 +11,54 @@ import FAQs from '../components/home/FAQs';
 
 function HomePage() {
   return (
-    <>
+    <div className="scroll-smooth">
       <Navbar />
-      <Hero />
-      <AboutProject />
-      <FloorPlans />
-      <Amenities />
-      <CityVideoSection />
-      <DeveloperInfo />
-      <ConstructionUpdates />
-      <FAQs />
-      <Footer />
-    </>
+      
+      {/* Home / Hero Section */}
+      <section id="home">
+        <Hero />
+      </section>
+
+      {/* Overview / About Section */}
+      <section id="overview">
+        <AboutProject />
+      </section>
+
+      {/* Amenities Section */}
+      <section id="amenities">
+        <Amenities />
+      </section>
+
+      {/* Floor Plans Section */}
+      <section id="floor-plans">
+        <FloorPlans />
+      </section>
+
+      {/* Connectivity / Video Section */}
+      <section id="connectivity">
+        <CityVideoSection />
+      </section>
+
+      {/* Developer Section */}
+      <section id="developer">
+        <DeveloperInfo />
+      </section>
+
+      {/* Construction Updates Section */}
+      <section id="updates">
+        <ConstructionUpdates />
+      </section>
+
+      {/* FAQs Section */}
+      <section id="faqs">
+        <FAQs />
+      </section>
+
+      {/* Contact is usually part of the Footer or a separate section */}
+      <section id="contact">
+        <Footer />
+      </section>
+    </div>
   );
 }
 

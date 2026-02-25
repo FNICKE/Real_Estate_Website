@@ -3,100 +3,95 @@ import { contentAPI } from '../../api/api';
 
 export default function FloorPlans() {
   const [plans, setPlans] = useState([]);
+  const [activeWing, setActiveWing] = useState('East Wing');
+  const [activeTab, setActiveTab] = useState(0); // For 1bhk, 2bhk, 5,6 bhk
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const wings = ['All', 'East Wing', 'West Wing', 'North Wing', 'South Wing'];
+  const unitLabels = ['1 bhk', '2 bhk', '5,6 bhk'];
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchFloorPlans = async () => {
-      try {
-        const response = await contentAPI.getFloorPlans();
-        if (isMounted) {
-          setPlans(response.data || []);
-          setError(null);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError('Unable to load floor plans. Please try again later.');
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchFloorPlans();
-
-    return () => {
-      isMounted = false;
-    };
+    contentAPI.getFloorPlans().then(res => {
+      setPlans(res.data || []);
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <section id="floorplans" className="py-20 bg-emerald-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">Floor Plans</h2>
-          <div className="text-gray-600">Loading floor plans...</div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section id="floorplans" className="py-20 bg-emerald-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">Floor Plans</h2>
-          <p className="text-red-600 font-medium">{error}</p>
-        </div>
-      </section>
-    );
-  }
-
+  // Matching the specific design from the screenshot
   return (
-    <section id="floorplans" className="py-20 bg-emerald-50">
+    <section id="floor-plans" className="py-16 bg-[#b2f0e3] min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-4">Floor Plans</h2>
-        <p className="text-center text-gray-600 mb-12">
-          Choose your perfect home from our thoughtfully designed layouts
-        </p>
+        
+        {/* Top Wing Navigation */}
+        <div className="flex justify-end gap-6 mb-12 text-sm font-medium text-emerald-800/60">
+          {wings.map(wing => (
+            <button 
+              key={wing} 
+              onClick={() => setActiveWing(wing)}
+              className={`pb-1 border-b-2 transition-all ${activeWing === wing ? 'border-emerald-700 text-emerald-900' : 'border-transparent'}`}
+            >
+              {wing}
+            </button>
+          ))}
+        </div>
 
-        {plans.length === 0 ? (
-          <div className="text-center text-gray-500 py-12">
-            No floor plans available at the moment.
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          
+          {/* Left Side: Large 3D Plan Card */}
+          <div className="w-full lg:w-1/2 bg-white rounded-[40px] p-8 shadow-sm">
+            <div className="aspect-square flex items-center justify-center overflow-hidden rounded-3xl">
+              <img 
+                src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1000" 
+                alt="3D Floor Plan" 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {plans.map((plan, index) => (
-              <div
-                key={`${plan.plan_type}-${index}`}
-                className="bg-white rounded-3xl overflow-hidden shadow-xl transition-transform hover:scale-[1.02]"
-              >
-                <div className="bg-emerald-600 text-white p-6 text-center">
-                  <h3 className="text-2xl font-bold">{plan.plan_type}</h3>
-                </div>
 
-                <div className="p-8 text-center">
-                  <p className="text-5xl font-bold text-emerald-700">
-                    {plan.area}
-                  </p>
-                  <p className="text-gray-500 mt-2 text-lg">RERA Carpet Area</p>
-
+          {/* Right Side: Info and Unit Selection */}
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start">
+            <div className="bg-white rounded-[40px] p-10 w-full max-w-md shadow-sm text-center">
+              
+              {/* Unit Type Toggles */}
+              <div className="flex gap-2 justify-center mb-8">
+                {unitLabels.map((label, idx) => (
                   <button
-                    className="mt-10 w-full bg-emerald-600 hover:bg-emerald-700 
-                             text-white py-4 rounded-2xl font-medium text-lg
-                             transition-colors duration-200"
+                    key={label}
+                    onClick={() => setActiveTab(idx)}
+                    className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
+                      activeTab === idx 
+                        ? 'bg-[#58b3a5] text-white shadow-md' 
+                        : 'bg-[#b8e2dc] text-[#58b3a5]'
+                    }`}
                   >
-                    {plan.price_info || 'Enquire for Price'}
+                    {label}
                   </button>
-                </div>
+                ))}
               </div>
-            ))}
+
+              {/* Data Display */}
+              <div className="space-y-4 mb-8">
+                <p className="text-gray-500 font-medium">Type- <span className="text-slate-800 ml-1">{unitLabels[activeTab].toUpperCase()}</span></p>
+                <p className="text-gray-500 font-medium">Area- <span className="text-slate-800 ml-1">380-411 RCA Sq.ft</span></p>
+                <p className="text-gray-500 font-medium italic">Price - <span className="text-slate-800 ml-1">Click for price</span></p>
+              </div>
+
+              <button className="bg-gradient-to-r from-[#add666] to-[#91c141] text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg hover:opacity-90 transition-opacity">
+                Download Floor Plan
+              </button>
+            </div>
+
+            {/* Thumbnail Gallery matching the image */}
+            <div className="flex gap-4 mt-8">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="w-24 h-24 bg-white/50 rounded-2xl p-2 border border-white/40 cursor-pointer hover:bg-white transition-colors">
+                  <img src="https://images.unsplash.com/photo-1628592102751-ba83b0314276?q=80&w=200" alt="thumb" className="w-full h-full object-contain opacity-60" />
+                </div>
+              ))}
+            </div>
           </div>
-        )}
+
+        </div>
       </div>
     </section>
   );

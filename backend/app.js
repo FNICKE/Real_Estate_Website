@@ -8,6 +8,7 @@ const aboutRoutes = require('./src/routes/aboutRoutes');      // ← added
 const amenitiesRoutes = require('./src/routes/amenitiesRoutes');  // ← added
 const constructionUpdatesRoutes = require('./src/routes/constructionUpdatesRoutes');  // ← added
 const faqsRoutes = require('./src/routes/faqsRoutes');              // ← added
+const floorPlansRoutes = require('./src/routes/floorPlansRoutes');  // ← added
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/about-project', aboutRoutes);           // ← added
 app.use('/api/amenities', amenitiesRoutes);           // ← added
 app.use('/api/construction-updates', constructionUpdatesRoutes);      // ← added
 app.use('/api/faqs', faqsRoutes);                           // ← added
+app.use('/api/floor-plans', floorPlansRoutes);           // ← added
 
 
 // Root route for testing

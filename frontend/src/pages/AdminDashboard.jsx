@@ -6,7 +6,7 @@ import { LogOut, Home, Edit3, Settings, Info, HelpCircle, Layers, Hammer } from 
 import HeroEdit from '../pages/edit/Hero';
 import AboutEdit from '../pages/edit/AboutProject';
 import AmenitiesEdit from '../pages/edit/Amenities';
-import FloorPlansEdit from '../components/home/FloorPlans';
+import FloorPlansEdit from '../pages/edit/FloorPlans';
 import ConstructionEdit from '../pages/edit/ConstructionUpdates';
 import FaqsEdit from '../pages/edit/FAQ';
 import DeveloperEdit from '../components/home/DeveloperInfo';

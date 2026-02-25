@@ -35,6 +35,13 @@ export const contentAPI = {
   updateFaq: (id, data) => API.put(`/faqs/${id}`, data),
   deleteFaq: (id) => API.delete(`/faqs/${id}`),
 
+
+  // Floor Plans (full CRUD)
+  getFloorPlans: () => API.get('/floor-plans'),
+  createFloorPlan: (data) => API.post('/floor-plans', data),
+  updateFloorPlan: (id, data) => API.put(`/floor-plans/${id}`, data),
+  deleteFloorPlan: (id) => API.delete(`/floor-plans/${id}`),
+
   // Developer (if you have it)
   getDeveloper: () => API.get('/developer'),
   updateDeveloper: (data) => API.put('/developer', data),
