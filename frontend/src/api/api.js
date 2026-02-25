@@ -17,25 +17,25 @@ export const contentAPI = {
   getAboutProject: () => API.get('/about-project'),
   updateAboutProject: (data) => API.put('/about-project', data),
 
-  // Amenities (full CRUD)
+  // Amenities
   getAmenities: () => API.get('/amenities'),
   createAmenity: (data) => API.post('/amenities', data),
   updateAmenity: (id, data) => API.put(`/amenities/${id}`, data),
   deleteAmenity: (id) => API.delete(`/amenities/${id}`),
 
-  // FAQs (full CRUD)
-  getFaqs: () => API.get('/faqs'),
-  createFaq: (data) => API.post('/faqs', data),
-  updateFaq: (id, data) => API.put(`/faqs/${id}`, data),
-  deleteFaq: (id) => API.delete(`/faqs/${id}`),
-
-  // Construction Updates (full CRUD)
+  // Construction Updates
   getConstructionUpdates: () => API.get('/construction-updates'),
   createConstructionUpdate: (data) => API.post('/construction-updates', data),
   updateConstructionUpdate: (id, data) => API.put(`/construction-updates/${id}`, data),
   deleteConstructionUpdate: (id) => API.delete(`/construction-updates/${id}`),
 
-  // Developer
+  // FAQs – ADD THIS BLOCK
+  getFaqs: () => API.get('/faqs'),
+  createFaq: (data) => API.post('/faqs', data),
+  updateFaq: (id, data) => API.put(`/faqs/${id}`, data),
+  deleteFaq: (id) => API.delete(`/faqs/${id}`),
+
+  // Developer (if you have it)
   getDeveloper: () => API.get('/developer'),
   updateDeveloper: (data) => API.put('/developer', data),
 };

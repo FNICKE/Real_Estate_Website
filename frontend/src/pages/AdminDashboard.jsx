@@ -8,7 +8,7 @@ import AboutEdit from '../pages/edit/AboutProject';
 import AmenitiesEdit from '../pages/edit/Amenities';
 import FloorPlansEdit from '../components/home/FloorPlans';
 import ConstructionEdit from '../pages/edit/ConstructionUpdates';
-import FaqsEdit from '../components/home/FAQs';
+import FaqsEdit from '../pages/edit/FAQ';
 import DeveloperEdit from '../components/home/DeveloperInfo';
 
 const tabs = [
