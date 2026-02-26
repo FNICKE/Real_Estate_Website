@@ -7,6 +7,7 @@ import FloorPlans from '../components/home/FloorPlans';
 import CityVideoSection from '../components/home/CityVideoSection';
 import DeveloperInfo from '../components/home/DeveloperInfo';
 import ConstructionUpdates from '../components/home/ConstructionUpdates';
+import Explore from '../components/home/Explore'; // New Component Imported
 import FAQs from '../components/home/FAQs';
 
 function HomePage() {
@@ -28,6 +29,11 @@ function HomePage() {
       <section id="amenities">
         <Amenities />
       </section>
+      
+      {/* NEW: Explore Township Section */}
+      <section id="explore">
+        <Explore />
+      </section>
 
       {/* Floor Plans Section */}
       <section id="floor-plans">
@@ -44,6 +50,7 @@ function HomePage() {
         <DeveloperInfo />
       </section>
 
+
       {/* Construction Updates Section */}
       <section id="updates">
         <ConstructionUpdates />
@@ -54,7 +61,7 @@ function HomePage() {
         <FAQs />
       </section>
 
-      {/* Contact is usually part of the Footer or a separate section */}
+      {/* Contact Section */}
       <section id="contact">
         <Footer />
       </section>

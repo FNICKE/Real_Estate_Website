@@ -29,7 +29,7 @@ export default function LoginForm() {
       // 2. Redirect to the exact path defined in App.jsx
       navigate('/admin/dashboard'); 
     } else {
-      setError('Invalid credentials. Hint: admin@gmail.com / 1234');
+      setError('Invalid credentials. Hint: Please use The Admin Email');
     }
   };
 
