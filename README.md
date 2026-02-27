@@ -37,9 +37,7 @@
 ---
 
 ## 📁 Folder Structure (Backend - Exactly as you wanted)
-
-
-vighnaharta-backend/
+backend/
 ├── src/
 │   ├── config/      → db.js
 │   ├── controller/  → contentController.js + adminController.js
@@ -72,7 +70,6 @@ npm run dev
 
 - Exact webpage design match  
 - Functional Admin Panel (edit Hero, About, Amenities, Floor Plans, Construction Updates, FAQs, Developer Info)  
-- Fixed admin login (admin@gmail.com / 1234)  
 - Images kept static (as per requirement)  
 - Backend with **your exact folder structure**  
 - Deployed on Netlify (Frontend)
@@ -95,5 +92,6 @@ npm run dev
 ---
 
 **⭐ If you like the project, please star the repository!**
+
 
 
